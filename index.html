@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matilde Salimei — Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #f8d7e8;
+            --pink-light: #fce8f1;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #666;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Mono', 'Courier New', monospace;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+            transition: opacity 0.3s;
+        }
+
+        nav .logo {
+            display: flex;
+            gap: 8px;
+        }
+
+        nav .logo span {
+            background: var(--white);
+            color: var(--black);
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* ─── LABEL STYLE (like in PDF) ─── */
+        .label {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            padding: 6px 12px;
+            text-transform: uppercase;
+        }
+
+        .label-group {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        /* ─── HERO SECTION ─── */
+        #hero {
+            height: 100vh;
+            background: var(--pink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #hero .hero-name {
+            position: absolute;
+            bottom: 35%;
+            right: 20%;
+            display: flex;
+            gap: 10px;
+        }
+
+        #hero .hero-name span {
+            background: var(--black);
+            color: var(--white);
+            padding: 10px 16px;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            min-height: 100vh;
+            padding: 120px 60px 80px;
+            position: relative;
+        }
+
+        .section-label {
+            margin-bottom: 60px;
+        }
+
+        /* ─── ABOUT / PROJECT TEXT ─── */
+        #about {
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        #about .text-block {
+            max-width: 580px;
+            margin-top: 40px;
+        }
+
+        #about .text-block p {
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        /* ─── IMAGE GRID SECTIONS ─── */
+        .image-section {
+            background: var(--white);
+        }
+
+        .page-image {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 0;
+        }
+
+        /* ─── COLLECTION GRID ─── */
+        .collection-grid {
+            display: grid;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .collection-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ─── LOOK PAGES ─── */
+        .look-page {
+            padding: 100px 40px 60px;
+            min-height: 100vh;
+        }
+
+        .look-page .page-render {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* ─── SPLIT SECTION (pink + white) ─── */
+        .split-section {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .split-section .left-pink {
+            flex: 1;
+            background: var(--pink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .split-section .right-white {
+            flex: 1;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
+        }
+
+        .split-section .right-white .label-group {
+            margin-bottom: 20px;
+        }
+
+        .split-section .right-white .subtitle {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--gray);
+            margin-top: 12px;
+        }
+
+        /* ─── PAGE RENDERS (full-width page images) ─── */
+        .full-page-section {
+            padding: 0;
+            min-height: auto;
+        }
+
+        .full-page-section img {
+            width: 100%;
+            display: block;
+        }
+
+        /* ─── SCROLL INDICATOR ─── */
+        .scroll-indicator {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .scroll-indicator .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .scroll-indicator .dot.active {
+            background: var(--black);
+            transform: scale(1.3);
+        }
+
+        .scroll-indicator .dot:hover {
+            background: rgba(0,0,0,0.5);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--pink-light);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        footer .footer-name {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        footer .footer-name span {
+            background: var(--black);
+            color: var(--white);
+            padding: 8px 14px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        footer p {
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 2px;
+        }
+
+        /* ─── CURSOR ─── */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid var(--black);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, opacity 0.15s;
+            mix-blend-mode: difference;
+            border-color: white;
+        }
+
+        /* ─── FADE-IN ANIMATION ─── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            nav .nav-links { gap: 12px; }
+            nav .nav-links a { font-size: 9px; }
+            section { padding: 80px 24px 60px; }
+            #hero .hero-name { right: 10%; bottom: 40%; }
+            #hero .hero-name span { font-size: 18px; padding: 8px 12px; }
+            .split-section { flex-direction: column; }
+            .split-section .left-pink,
+            .split-section .right-white { padding: 40px; }
+            .scroll-indicator { display: none; }
+            .look-page { padding: 80px 16px 40px; }
+        }
+
+        /* ─── MOBILE NAV ─── */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: var(--black);
+                flex-direction: column;
+                padding: 20px;
+                gap: 16px;
+            }
+            nav .nav-links.open { display: flex; }
+        }
+
+        /* ─── LOADING ─── */
+        .loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--pink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.6s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-text {
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <span class="loader-text">Matilde Salimei</span>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">
+            <span>Matilde</span>
+            <span>Salimei</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">Progetto</a></li>
+            <li><a href="#moodboard">Moodboard</a></li>
+            <li><a href="#lineup">Lineup</a></li>
+            <li><a href="#looks">Looks</a></li>
+            <li><a href="#silver-springs">Silver Springs</a></li>
+            <li><a href="#questa-casa">Questa Casa</a></li>
+        </ul>
+    </nav>
+
+    <!-- SCROLL DOTS -->
+    <div class="scroll-indicator" id="scrollDots"></div>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-name">
+            <span>Matilde</span>
+            <span>Salimei</span>
+        </div>
+    </section>
+
+    <!-- ABOUT / SILVER SPRINGS II -->
+    <section id="about">
+        <div class="section-label fade-in">
+            <div class="label-group">
+                <span class="label">Silver</span>
+                <span class="label">Springs</span>
+                <span class="label">II</span>
+            </div>
+        </div>
+        <div class="text-block fade-in">
+            <p>Questa proposta di progetto per Moda Milano Graduate 2026 rappresenta la prosecuzione dello sviluppo progettuale gi&agrave; avviato nel mio progetto di collezione finale, integrato al percorso di ricerca della mia tesi. In questa fase del lavoro mi interessa approfondire e ampliare tale ricerca attraverso lo sviluppo di nuove silhouette, utilizzando lo stesso approccio progettuale ma partendo da ulteriori immagini provenienti dal mio archivio personale, integrate alla ricerca visiva gi&agrave; condotta.</p>
+            <p>Il progetto indaga l&rsquo;archivio come struttura generativa, capace di produrre nuove tracce nel presente. La ricerca prende avvio dal ritrovamento di album fotografici familiari costruiti e ordinati da mia nonna, figura che assume un duplice statuto di soggetto rappresentato e autrice dell&rsquo;archivio. L&rsquo;album viene inteso non come semplice contenitore di immagini, ma come dispositivo di montaggio capace di selezionare e ordinare una memoria visiva stratificata e parziale.</p>
+            <p>La ricerca si interroga su cosa significhi lavorare a partire da un archivio non pi&ugrave; esistente nella sua dimensione materiale e su come sia possibile ricostruirne una forma tangibile attraverso la traduzione dell&rsquo;immagine in materia.</p>
+            <p>Attraverso la moda come strumento conoscitivo e operativo, l&rsquo;archivio familiare viene rielaborato in un sistema di abiti e oggetti che non mira alla replica del passato, ma alla sua reinterpretazione contemporanea: dall&rsquo;album all&rsquo;armadio, fino allo spazio domestico e alla messa in scena.</p>
+        </div>
+    </section>
+
+    <!-- MOODBOARD -->
+    <section id="moodboard" class="full-page-section">
+        <div style="padding: 80px 40px 20px;">
+            <div class="section-label fade-in">
+                <span class="label">Moodboard</span>
+            </div>
+        </div>
+        <img src="images/page_03.jpg" alt="Moodboard" class="page-render fade-in" style="width:100%; display:block;">
+    </section>
+
+    <!-- LINEUP (Silver Springs II) -->
+    <section id="lineup" class="full-page-section">
+        <div style="padding: 80px 40px 20px;">
+            <div class="section-label fade-in">
+                <span class="label">Lineup</span>
+            </div>
+        </div>
+        <img src="images/page_04.jpg" alt="Lineup" class="page-render fade-in" style="width:100%; display:block;">
+    </section>
+
+    <!-- LOOKS -->
+    <section id="looks" style="padding: 100px 0 0; min-height: auto;">
+        <div style="padding: 0 40px 40px;">
+            <div class="section-label fade-in">
+                <div class="label-group">
+                    <span class="label">Looks</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Look 1 -->
+        <div class="fade-in">
+            <img src="images/page_05.jpg" alt="Look 1" style="width:100%; display:block; margin-bottom: 4px;">
+        </div>
+        <!-- Look 2 -->
+        <div class="fade-in">
+            <img src="images/page_06.jpg" alt="Look 2" style="width:100%; display:block; margin-bottom: 4px;">
+        </div>
+        <!-- Look 3 -->
+        <div class="fade-in">
+            <img src="images/page_07.jpg" alt="Look 3" style="width:100%; display:block; margin-bottom: 4px;">
+        </div>
+        <!-- Look 4 -->
+        <div class="fade-in">
+            <img src="images/page_08.jpg" alt="Look 4" style="width:100%; display:block; margin-bottom: 4px;">
+        </div>
+        <!-- Look 5 -->
+        <div class="fade-in">
+            <img src="images/page_09.jpg" alt="Look 5" style="width:100%; display:block;">
+        </div>
+    </section>
+
+    <!-- SILVER SPRINGS - BA Collection -->
+    <section id="silver-springs" class="split-section" style="padding: 0; min-height: 100vh;">
+        <div class="left-pink">
+            <img src="images/page_10.jpg" alt="Silver Springs" style="width:100%; max-width:600px; border-radius: 0;" class="fade-in">
+        </div>
+        <div class="right-white" style="display:none;"></div>
+    </section>
+
+    <!-- Silver Springs - Narrative -->
+    <section class="full-page-section">
+        <img src="images/page_11.jpg" alt="Silver Springs Story" class="fade-in" style="width:100%; display:block;">
+    </section>
+
+    <!-- Silver Springs - Full Lineup -->
+    <section class="full-page-section">
+        <img src="images/page_12.jpg" alt="Full Lineup" class="fade-in" style="width:100%; display:block;">
+    </section>
+
+    <!-- Photo Shoots -->
+    <section class="full-page-section">
+        <img src="images/page_13.jpg" alt="Photoshoot 1" class="fade-in" style="width:100%; display:block; margin-bottom: 4px;">
+        <img src="images/page_14.jpg" alt="Photoshoot 2" class="fade-in" style="width:100%; display:block;">
+    </section>
+
+    <!-- QUESTA CASA HA I CAPELLI -->
+    <section id="questa-casa" class="split-section" style="padding: 0; min-height: 100vh;">
+        <div class="left-pink" style="min-height: 100vh;"></div>
+        <div class="right-white">
+            <div class="label-group fade-in">
+                <span class="label">Questa</span>
+                <span class="label">Casa</span>
+                <span class="label">Ha</span>
+                <span class="label">I</span>
+                <span class="label">Capelli</span>
+            </div>
+            <p class="subtitle fade-in">Progetto di tesi<br>con la supervisione di Ruggero Negretto</p>
+        </div>
+    </section>
+
+    <!-- Questa Casa - Details -->
+    <section class="full-page-section">
+        <img src="images/page_16.jpg" alt="Questa Casa - Progetto" class="fade-in" style="width:100%; display:block; margin-bottom: 4px;">
+        <img src="images/page_17.jpg" alt="Questa Casa - Processo" class="fade-in" style="width:100%; display:block; margin-bottom: 4px;">
+        <img src="images/page_18.jpg" alt="Questa Casa - Finale" class="fade-in" style="width:100%; display:block;">
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-name">
+            <span>Matilde</span>
+            <span>Salimei</span>
+        </div>
+        <p>Portfolio &mdash; Moda Milano Graduate 2026</p>
+    </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 800);
+        });
+
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+        document.querySelectorAll('a, button, .label').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
+
+        // Mobile menu
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Scroll dots
+        const sections = document.querySelectorAll('section[id]');
+        const dotsContainer = document.getElementById('scrollDots');
+        sections.forEach((sec, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.addEventListener('click', () => sec.scrollIntoView({ behavior: 'smooth' }));
+            dotsContainer.appendChild(dot);
+        });
+
+        window.addEventListener('scroll', () => {
+            const dots = dotsContainer.querySelectorAll('.dot');
+            let current = 0;
+            sections.forEach((sec, i) => {
+                if (window.scrollY >= sec.offsetTop - 300) current = i;
+            });
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#navLinks a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
